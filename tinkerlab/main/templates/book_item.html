@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Book Item{% endblock %}
+{% block content %}
+<div class="card shadow mx-auto" style="max-width: 600px;">
+    <div class="card-header bg-warning text-black fw-bold">Book {{ item.title }}</div>
+    <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-dark w-100">Submit Request</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

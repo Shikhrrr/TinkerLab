@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}Respond to Request{% endblock %}
+{% block content %}
+<h2 class="fw-bold text-black mb-4">Respond to Request</h2>
+
+<div class="card p-4 shadow">
+    <p><strong>Student:</strong> {{ req.student.username }}</p>
+    <p><strong>Item:</strong> {{ req.item.title }}</p>
+    <p><strong>Duration:</strong> {{ req.duration_days }} days</p>
+    <p><strong>Purpose:</strong> {{ req.purpose }}</p>
+    <p><strong>Requested on:</strong> {{ req.request_date|date:"d M Y, H:i" }}</p>
+
+    <form method="POST" class="mt-3">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="status" class="form-label">Decision:</label>
+            <select name="status" id="status" class="form-select" required>
+                <option value="">-- Select --</option>
+                <option value="Approved">Approve</option>
+                <option value="Rejected">Reject</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="comment" class="form-label">Admin Comment (optional):</label>
+            <textarea name="comment" id="comment" rows="3" class="form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-dark w-100">Submit Decision</button>
+    </form>
+</div>
+{% endblock %}

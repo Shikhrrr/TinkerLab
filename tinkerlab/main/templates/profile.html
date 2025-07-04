@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class="card shadow mx-auto" style="max-width: 500px;">
+    <div class="card-body text-center">
+        <img src="{{ user.profile_image.url }}" class="rounded-circle mb-3" width="150">
+        <h4 class="text-black">{{ user.username }}</h4>
+        <p>Roll No: {{ user.roll }}</p>
+        <p>Semester: {{ user.semester }}</p>
+        <p>Department: {{ user.department }}</p>
+        <a href="{% url 'edit_profile' %}" class="btn btn-warning text-black">Edit Profile</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}Search{% endblock %}
+{% block content %}
+<h2 class="text-black fw-bold">Search Equipment</h2>
+<form method="GET" class="row g-2 mb-4">
+    <div class="col-md-5">
+        <input type="text" name="q" class="form-control" placeholder="Search by name or ID" value="{{ request.GET.q }}">
+    </div>
+    <div class="col-md-4">
+        <input type="text" name="dept" class="form-control" placeholder="Filter by Department" value="{{ request.GET.dept }}">
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-dark w-100">Search</button>
+    </div>
+</form>
+
+{% include 'home.html' with items=items %}
+{% endblock %}

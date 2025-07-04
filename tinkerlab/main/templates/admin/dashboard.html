@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<h2 class="fw-bold text-black mb-4">Admin Dashboard</h2>
+
+<a href="{% url 'add_item' %}" class="btn btn-dark mb-3">➕ Add New Item</a>
+<a href="{% url 'pending_requests' %}" class="btn btn-warning text-black mb-3 ms-2">📥 View Pending Requests</a>
+
+<table class="table table-bordered table-striped bg-white shadow">
+    <thead class="table-warning text-black">
+        <tr>
+            <th>Item ID</th>
+            <th>Title</th>
+            <th>Available / Total</th>
+            <th>Location</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.item_id }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.available }} / {{ item.quantity }}</td>
+            <td>{{ item.location }}</td>
+            <td>
+                <a href="{% url 'edit_item' item.item_id %}" class="btn btn-sm btn-warning text-black">Edit</a>
+                <a href="{% url 'delete_item' item.item_id %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">No items available.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h2 class="text-black fw-bold mb-4">Available Equipment</h2>
+<div class="row">
+
+    {% comment %} search form {% endcomment %}
+    <form method="GET" class="row g-3 mb-4">
+        <div class="col-md-5">
+            <input type="text" name="q" class="form-control" placeholder="Search by item name" value="{{ query }}">
+        </div>
+        
+        <div class="col-md-4">
+            <select name="dept" class="form-select">
+                <option value="">Filter by Department</option>
+                <option value="CSE" {% if dept == "CSE" %}selected{% endif %}>Computer Science and Engineering</option>
+                <option value="ECE" {% if dept == "ECE" %}selected{% endif %}>Electronics and Communication Engineering</option>
+                <option value="EEE" {% if dept == "EEE" %}selected{% endif %}>Electrical and Electronics Engineering</option>
+                <option value="ME" {% if dept == "ME" %}selected{% endif %}>Mechanical Engineering</option>
+                <option value="CE" {% if dept == "CE" %}selected{% endif %}>Civil Engineering</option>
+                <option value="IT" {% if dept == "IT" %}selected{% endif %}>Information Technology</option>
+                <option value="CHE" {% if dept == "CHE" %}selected{% endif %}>Chemical Engineering</option>
+                <option value="BT" {% if dept == "BT" %}selected{% endif %}>Biotechnology</option>
+                <option value="MT" {% if dept == "MT" %}selected{% endif %}>Metallurgy</option>
+                <option value="AE" {% if dept == "AE" %}selected{% endif %}>Aerospace Engineering</option>
+                <option value="PIE" {% if dept == "PIE" %}selected{% endif %}>Production and Industrial Engineering</option>
+                <option value="OTHER" {% if dept == "OTHER" %}selected{% endif %}>Other</option>
+            </select>
+
+        </div>
+
+        <div class="col-md-3">
+            <button class="btn btn-dark w-100">Search</button>
+        </div>
+    </form>
+
+    {% for item in items %}
+    <div class="col-md-4">
+        <div class="card mb-4 shadow">
+            <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.title }}" style="height: 220px; object-fit: cover; width: 100%;">
+            <div class="card-body">
+                <h5 class="card-title text-black fw-semibold">{{ item.title }}</h5>
+                <p class="card-text">{{ item.description|truncatechars:100 }}</p>
+                <p><strong>Available:</strong> {{ item.available }} / {{ item.quantity }}</p>
+                <a href="{% url 'view_item' item.item_id %}" class="btn btn-warning text-black w-100">View Details</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

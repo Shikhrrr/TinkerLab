@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="card mx-auto shadow" style="max-width: 500px;">
+    <div class="card-header bg-warning text-black text-center fw-bold">Student Registration</div>
+    <div class="card-body">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="mb-3">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+            </div>
+            <div class="mb-3">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+            </div>
+            <div class="mb-3">
+                {{ form.roll.label_tag }}
+                {{ form.roll }}
+            </div>
+            <div class="mb-3">
+                {{ form.semester.label_tag }}
+                {{ form.semester }}
+            </div>
+            <div class="mb-3">
+                {{ form.department.label_tag }}
+                {{ form.department }}
+            </div>
+            <div class="mb-3">
+                {{ form.profile_image.label_tag }}
+                {{ form.profile_image }}
+            </div>
+            <div class="mb-3">
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+            </div>
+            <div class="mb-3">
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+            </div>
+            <button type="submit" class="btn btn-dark w-100">Register</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

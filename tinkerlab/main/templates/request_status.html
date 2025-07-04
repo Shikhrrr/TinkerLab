@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}Request Status{% endblock %}
+{% block content %}
+<h3 class="text-black fw-bold">Your Booking Requests</h3>
+<table class="table table-bordered table-hover bg-white shadow">
+    <thead class="table-warning text-black">
+        <tr>
+            <th>Item</th>
+            <th>Status</th>
+            <th>Requested On</th>
+            <th>Return Date</th>
+            <th>Admin Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for r in requests %}
+        <tr>
+            <td>{{ r.item.title }}</td>
+            <td>{{ r.status }}</td>
+            <td>{{ r.request_date|date:"d M Y" }}</td>
+            <td>{{ r.return_date|default:"-" }}</td>
+            <td>{{ r.admin_comment|default:"-" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
